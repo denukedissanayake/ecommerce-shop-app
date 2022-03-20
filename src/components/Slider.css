@@ -1,0 +1,79 @@
+.slider-container {
+  height: calc(100vh - 90px);
+  width: 100vw;
+  position: relative;
+}
+
+.arrows {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(209, 200, 200);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 10px;
+  right: 10px;
+ ;
+}
+
+.left-arrow {
+  margin-left: 20px;
+}
+
+.right-arrow {
+  margin-right: 20px;
+}
+
+/* Cover CSS */
+
+.cover-wrapper {
+  /* width: 10vw; */
+  height: 100%;
+  transition: all 1.5s ease;
+}
+
+.warapper {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.image-container {
+  height: 100%;
+  flex: 1;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+.info-container {
+  flex: 1;
+}
+
+.cover-title {
+  font-size: 50px;
+}
+
+.cover-description {
+  margin: 10px 0;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.shop-now-button {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}

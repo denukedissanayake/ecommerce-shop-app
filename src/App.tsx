@@ -1,6 +1,7 @@
 import './App.css';
 import Hotnews from './components/Hotnews';
 import Navbar from './components/Navbar';
+import Slider from './components/Slider';
 import Home from './pages/Home';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <div className="App">
       <Hotnews/>
       <Navbar/>
-      <Home/>
+      <Slider/>
     </div>
   );
 }
