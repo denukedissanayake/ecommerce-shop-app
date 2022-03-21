@@ -2,31 +2,7 @@ import './Slider.css'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useState } from 'react';
-
-const img1 = require('../images/img1.png')
-const img2 = require('../images/img4.png')
-const img3 = require('../images/img3.png')
-
-const items = [
-    {
-        image: img1 ,
-        titlle: 'BEST Store in HERE!',
-        desription: 'BEST Items for BEST Price. Experiece Upto 50% Discount.',
-        color : '#ACDDDE'
-    },
-    {
-        image: img2 ,
-        titlle: 'Hurry Up!',
-        desription: 'Experiece Upto 50% Discount Until 31st of December',
-        color : '#CAF1DE'
-    },
-    {
-        image: img3 ,
-        titlle: 'Want to Buy BEST items in Sri Lanka!',
-        desription: 'Buy Soon! Limited Stockes are Avilabe',
-        color : '#FEF8DD'
-    },
-]
+import {items} from '../data'
 
 
 const Slider = () => {

@@ -1,13 +1,13 @@
 .slider-container {
   height: calc(100vh - 90px);
-  width: 100vw;
+  width: 100%;
   position: relative;
 }
 
 .arrows {
   height: 50px;
   width: 50px;
-  background-color: rgb(209, 200, 200);
+  background-color: rgba(209, 200, 200, 0.404);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -20,7 +20,6 @@
   margin: auto;
   left: 10px;
   right: 10px;
- ;
 }
 
 .left-arrow {
@@ -41,7 +40,7 @@
 
 .warapper {
   height: 100%;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -54,6 +53,7 @@
 img {
   height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 .info-container {
