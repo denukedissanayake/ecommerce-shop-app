@@ -54,6 +54,56 @@ export const categories = [
         image: 'https://images.pexels.com/photos/9619665/pexels-photo-9619665.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
         title: 'Underwares'
     },
-    
-
 ]
+
+export const products = [
+    {
+        id: 1,
+        image: 'https://images.pexels.com/photos/1335463/pexels-photo-1335463.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 2,
+        image: 'https://images.pexels.com/photos/1476209/pexels-photo-1476209.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 3,
+        image: 'https://images.pexels.com/photos/3782788/pexels-photo-3782788.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 4,
+        image: 'https://images.pexels.com/photos/6310184/pexels-photo-6310184.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 5,
+        image: 'https://images.pexels.com/photos/2078268/pexels-photo-2078268.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 6,
+        image: 'https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 7,
+        image: 'https://images.pexels.com/photos/10975864/pexels-photo-10975864.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 8,
+        image: 'https://images.pexels.com/photos/7081109/pexels-photo-7081109.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 9,
+        image: 'https://images.pexels.com/photos/1038039/pexels-photo-1038039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 10,
+        image: 'https://images.pexels.com/photos/2229712/pexels-photo-2229712.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 11,
+        image: 'https://images.pexels.com/photos/1865131/pexels-photo-1865131.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+        id: 12,
+        image: 'https://images.pexels.com/photos/1007018/pexels-photo-1007018.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+]
+

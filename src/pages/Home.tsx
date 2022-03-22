@@ -1,6 +1,7 @@
 import Categories from '../components/Categories';
 import Hotnews from '../components/Hotnews';
 import Navbar from '../components/Navbar';
+import Products from '../components/Products';
 import Slider from '../components/Slider';
 
 type Props = {}
@@ -11,7 +12,8 @@ const Home = (props: Props) => {
       <Hotnews/>
       <Navbar/>
       <Slider />
-      <Categories/>
+      <Categories />
+      <Products/>
     </div>
   )
 }
