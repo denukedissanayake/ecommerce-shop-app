@@ -1,6 +1,6 @@
-import {products} from '../data'
+import {products} from '../utils/data'
 import Productitem from './Productitem'
-import './Products.css'
+import './styles/Products.css'
 
 const Products = () => {
   return (

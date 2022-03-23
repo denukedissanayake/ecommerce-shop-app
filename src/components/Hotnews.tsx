@@ -1,4 +1,4 @@
-import './Hotnews.css'
+import './styles/Hotnews.css'
 
 type Props = {}
 

@@ -1,5 +1,5 @@
-import './Categoryitem.css'
-import { CategotyItem } from '../Types'
+import './styles/Categoryitem.css'
+import { CategotyItem } from '../utils/Types'
 
 type ItemProps = {
     item : CategotyItem

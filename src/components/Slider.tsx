@@ -1,8 +1,8 @@
-import './Slider.css'
+import './styles/Slider.css'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useState } from 'react';
-import {items} from '../data'
+import {items} from '../utils/data'
 
 
 const Slider = () => {

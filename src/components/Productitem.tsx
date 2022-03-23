@@ -1,8 +1,8 @@
-import { ProductItem } from '../Types'
+import { ProductItem } from '../utils/Types'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import './Productitem.css'
+import './styles/Productitem.css'
 
 type productItemProps = {
     item: ProductItem
