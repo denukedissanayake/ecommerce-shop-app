@@ -1,5 +1,5 @@
 .newsletter-container {
-  height: 400px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,8 +8,9 @@
 }
 
 .newsletter-title {
-  font-size: 75px;
-  margin: 25px;
+  font-size: 60px;
+  margin: 10px;
+  padding: 0;
 }
 
 .newsletter-description {
@@ -26,6 +27,7 @@
   height: 40px;
   border-radius: 5px;
   border: 1px solid #000;
+  margin-bottom: 20px;
 }
 
 .newsletter-email {

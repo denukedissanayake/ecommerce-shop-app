@@ -1,4 +1,5 @@
 import Categories from '../components/Categories';
+import Footer from '../components/Footer';
 import Hotnews from '../components/Hotnews';
 import Navbar from '../components/Navbar';
 import Newsletter from '../components/Newsletter';
@@ -15,7 +16,8 @@ const Home = (props: Props) => {
       <Slider />
       <Categories />
       <Products />
-      <Newsletter/>
+      <Newsletter />
+      <Footer/>
     </div>
   )
 }
