@@ -1,4 +1,5 @@
 import Categories from '../components/Categories';
+import CustomTitle from '../components/CustomTitle';
 import Footer from '../components/Footer';
 import Hotnews from '../components/Hotnews';
 import Navbar from '../components/Navbar';
@@ -14,7 +15,9 @@ const Home = (props: Props) => {
       <Hotnews/>
       <Navbar/>
       <Slider />
+      <CustomTitle size={40} title={"Popular Categories - Explore Now"}/>
       <Categories />
+      <CustomTitle size={30} title={"Trending Items - Limited Stock Only!"}/>
       <Products />
       <Newsletter />
       <Footer/>
