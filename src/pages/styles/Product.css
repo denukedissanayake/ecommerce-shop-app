@@ -43,6 +43,7 @@ select {
   padding: 5px 10px;
   margin: 5px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 /* .filter-product-text {

@@ -41,9 +41,9 @@ const Product = (props: Props) => {
 
                   <div className="purchase-container">
                       <div className="item-count-container">
-                          <AddIcon className='item-add-icon' />
-                          <span className="item-count">0</span>
-                          <RemoveIcon className='item-add-icon' />
+                        <RemoveIcon className='item-add-icon' />
+                        <span className="item-count">0</span>
+                        <AddIcon className='item-add-icon' />
                       </div>
                       <button className='add-to-cart'>Add to Cart</button>
                   </div>
