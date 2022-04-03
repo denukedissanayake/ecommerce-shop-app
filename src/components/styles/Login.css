@@ -48,3 +48,15 @@
   border-radius: 5px;
   text-transform: uppercase;
 }
+
+@media screen and (max-width: 480px) {
+  .login-container {
+    width: 90%;
+  }
+
+  .forgot-password {
+    width: 90%;
+    margin: 10px;
+    padding: 5px;
+  }
+}

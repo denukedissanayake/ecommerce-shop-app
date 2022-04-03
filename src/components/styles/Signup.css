@@ -67,3 +67,33 @@
   display: flex;
   align-items: center;
 }
+
+@media screen and (max-width: 480px) {
+  .signup-container {
+    width: 90%;
+  }
+
+  .signup-form-inline-items-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+
+  .signup-form-multiline-items-container {
+    width: 90%;
+  }
+
+  .signup-form-inline-items-container:first-child {
+    margin-right: 0;
+  }
+
+  .signup-form-inline-items {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .signup-input {
+    width: 100%;
+  }
+}

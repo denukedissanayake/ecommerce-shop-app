@@ -46,10 +46,6 @@ select {
   cursor: pointer;
 }
 
-/* .filter-product-text {
-  margin-right: 5px;
-} */
-
 .filter-product {
   margin-right: 15px;
 }
@@ -102,4 +98,35 @@ select {
   border: 2px solid #000;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .product-container {
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .color-size-picker-title {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .filter-container {
+    justify-content: space-between;
+  }
+
+  .purchase-container {
+    /* width: 90%; */
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .add-to-cart-container {
+    margin-right: 18px;
+  }
+
+  .add-to-cart {
+    margin-left: 0;
+  }
 }

@@ -9,7 +9,7 @@ const Navbar = (props: Props) => {
       <div className="navbar-container">
           <div className='navbar'>
               <div className='navbar-left'>
-                  EN
+                  <span className='navbar-language'>EN</span>
                   <div className="search-container">
                     <input type='text'/>
                     <SearchIcon className='search' style={{color: 'grey' , fontSize: 20}}/>

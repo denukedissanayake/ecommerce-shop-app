@@ -48,3 +48,18 @@
 .toggle-quote {
   font-size: 15px;
 }
+
+@media screen and (max-width: 480px) {
+  .auth-container {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .google-button-container {
+    width: 80%;
+  }
+
+  .toggle-button {
+    width: 80%;
+  }
+}

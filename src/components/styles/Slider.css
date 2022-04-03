@@ -77,3 +77,32 @@ img {
   font-size: 20px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px) {
+  .slider-container {
+    height: 500px;
+  }
+
+  .warapper {
+    flex-direction: column;
+  }
+
+  .image-container {
+    height: 10%;
+  }
+
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cover-title {
+    font-size: 20px;
+  }
+
+  .cover-description {
+    font-size: 15px;
+    text-align: center;
+  }
+}

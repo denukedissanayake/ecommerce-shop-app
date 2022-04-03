@@ -48,3 +48,24 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px) {
+  .category-item-container {
+    height: 120px;
+    width: 100%;
+    margin: 3px auto;
+  }
+
+  .category-item-container:hover {
+    transform: none;
+  }
+
+  .category-title {
+    font-size: 20px;
+  }
+
+  .category-shopnow-button {
+    padding: 10px;
+    font-size: 15px;
+  }
+}

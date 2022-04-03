@@ -48,3 +48,32 @@ input {
   padding: 0 20px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px) {
+  .navbar-container {
+    height: 100px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+  .navbar-left {
+    margin-bottom: 5px;
+  }
+
+  .navbar-middle {
+    margin-bottom: 5px;
+  }
+
+  .navbar-right {
+    margin-bottom: 5px;
+    justify-content: space-around;
+  }
+
+  .menu-item {
+    font-size: 20px;
+  }
+}

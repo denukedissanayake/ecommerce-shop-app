@@ -20,7 +20,7 @@ const Product = (props: Props) => {
                   <p className="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique labore aliquid, cumque rem odio nulla. Rem voluptates, accusamus dicta nemo eveniet eum explicabo blanditiis? Minima dolorum provident distinctio sunt.</p>
                   <h3 className="product-price">$99.99</h3>
 
-                  <h3>Choose Your Favourite Color & Size</h3>
+                  <h3 className='color-size-picker-title'>Choose Your Favourite Color & Size</h3>
                   <div className="filter-container">
                       <div className="filter-product choose-color">
                           <div className='choose-color-item' style={{backgroundColor: "blue"}} />
@@ -45,7 +45,9 @@ const Product = (props: Props) => {
                         <span className="item-count">0</span>
                         <AddIcon className='item-add-icon' />
                       </div>
-                      <button className='add-to-cart'>Add to Cart</button>
+                      <div className='add-to-cart-container'>
+                        <button className='add-to-cart'>Add to Cart</button>
+                      </div>
                   </div>
               </div>
           </div>

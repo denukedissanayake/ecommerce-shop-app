@@ -54,3 +54,19 @@
 .newsletter-subscribe-button-icon {
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px) {
+  .newsletter-container {
+    height: 250px;
+  }
+  .newsletter-description {
+    text-align: center;
+    font-size: 20px;
+    margin: 5px;
+  }
+
+  .newsletter-subscribe-container {
+    width: 80%;
+    height: 40px;
+  }
+}

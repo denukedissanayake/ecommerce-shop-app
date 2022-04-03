@@ -72,3 +72,24 @@
   background-color: rgb(236, 233, 233);
   transform: scale(1.1);
 }
+
+@media screen and (max-width: 480px) {
+  .product-item-container {
+    margin: 5px auto;
+    height: 150px;
+    width: 45%;
+  }
+
+  .product-item-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 3px;
+  }
+
+  .product-item-icon:hover {
+    background-color: rgb(236, 233, 233);
+    transform: scale(1.1);
+  }
+}

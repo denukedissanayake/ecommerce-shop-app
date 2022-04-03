@@ -1,6 +1,5 @@
 import Add from '@mui/icons-material/Add'
 import Remove from '@mui/icons-material/Remove'
-import { fontSize } from '@mui/system'
 import './styles/Cart.css'
 
 type CartProductProps = {
@@ -15,7 +14,7 @@ const Cart = () => {
 
     const CartProduct = ({image} :CartProductProps) => {
         return(
-            <div style={{ display: "flex", margin: "10px" }}>
+            <div className='cart-wrapper' style={{ display: "flex", margin: "10px" }}>
                 <div className='cart-product-details'>
                     <img className='cart-product-details-image' src={image} />
                     <div className='cart-product-details-info'>

@@ -14,3 +14,27 @@ select {
   padding: 5px 10px;
   margin: 5px;
 }
+
+@media screen and (max-width: 480px) {
+  .filter-container {
+    margin: 10px 25px;
+    justify-content: space-between;
+  }
+
+  .filter {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-product-text,
+  .sort-products-text {
+    font-size: 15px;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  select {
+    padding: 5px 2px;
+    margin: 8px 5px;
+  }
+}
