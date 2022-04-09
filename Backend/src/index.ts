@@ -1,5 +1,5 @@
 require('dotenv').config()
-import express from 'express';
+import express, { application } from 'express';
 import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
@@ -9,6 +9,7 @@ require('./utils/passport');
 const AuthRouter = require('./routes/Auth');
 const UserRouter = require('./routes/User')
 const ProductRouter = require('./routes/Product')
+const CartController = require('./routes/Cart');
 
 const app = express();
 const PORT = 3006;
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use('/api/auth', AuthRouter);
 app.use('/api/user', UserRouter);
 app.use('/api/product', ProductRouter);
+app.use('/api/cart', CartController);
 
 mongoose.connect(process.env.MONGODB_URL as string)
     .then(() => console.log("Connected to MongoDB"))

@@ -12,6 +12,7 @@ require('./utils/passport');
 const AuthRouter = require('./routes/Auth');
 const UserRouter = require('./routes/User');
 const ProductRouter = require('./routes/Product');
+const CartController = require('./routes/Cart');
 const app = (0, express_1.default)();
 const PORT = 3006;
 app.use((0, cookie_session_1.default)({
@@ -30,6 +31,7 @@ app.use(express_1.default.json());
 app.use('/api/auth', AuthRouter);
 app.use('/api/user', UserRouter);
 app.use('/api/product', ProductRouter);
+app.use('/api/cart', CartController);
 mongoose_1.default.connect(process.env.MONGODB_URL)
     .then(() => console.log("Connected to MongoDB"))
     .catch(e => console.log(e));

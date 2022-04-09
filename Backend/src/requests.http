@@ -78,3 +78,40 @@ Content-Type: application/json
 {
     "categories" : ["shirt", "men", "cashual"]
 }
+
+
+
+
+### Cart Reqests
+POST http://localhost:3005/api/cart
+Content-Type: application/json
+
+{
+   "userID": "624a0a28945987d3fb86c9dd",
+    "products": [
+        { "productId": "6251daf4b14a15a2afa9eac8" , "quantity": 1 },
+        { "productId": "6251daf4b14a15a2afa9eac8" , "quantity": 2 }
+    ]
+}
+
+###
+GET http://localhost:3005/api/cart
+
+###
+GET http://localhost:3005/api/cart/6251fa43e99229d1782ffddb
+
+###
+DELETE http://localhost:3005/api/cart/6251fa43e99229d1782ffddb
+
+###
+
+PUT http://localhost:3005/api/cart/6251fa51e99229d1782ffddf
+Content-Type: application/json
+
+{
+   "userID": "624df60b0ab3ada14ece5451",
+    "products": [
+        { "productId": "6251daf4b14a15a2afa9eac8" , "quantity": 9 },
+        { "productId": "6251db9d49afddb7eb398fc7" , "quantity": 5 }
+    ]
+}
