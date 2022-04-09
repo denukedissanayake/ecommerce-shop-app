@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./Schema/User');
+const User = require('../Schema/User');
 import bcrypt from 'bcrypt';
 
 passport.use(
@@ -29,8 +29,10 @@ passport.serializeUser(function (user: any, done: any) {
 passport.deserializeUser(function(id: any, done: any) {
   User.findById(id, function (err: any, user: any) {
     const userinfo = {
+      id : user.id,
       username: user.username,
-      email: user.email
+      email: user.email,
+      isAdmin : user.isAdmin
     }
       done(err, userinfo);
     });

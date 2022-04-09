@@ -4,9 +4,10 @@ import mongoose from 'mongoose';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
 import cors from 'cors';
-require('./passport');
+require('./utils/passport');
 
 const AuthRouter = require('./routes/Auth');
+const UserRouter = require('./routes/User')
 
 const app = express();
 const PORT = 3006;
@@ -26,6 +27,7 @@ app.use(express.json());
 // }))
 
 app.use('/api/auth', AuthRouter);
+app.use('/api/user', UserRouter);
 
 mongoose.connect(process.env.MONGODB_URL as string)
     .then(() => console.log("Connected to MongoDB"))

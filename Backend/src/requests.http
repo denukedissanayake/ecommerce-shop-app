@@ -1,0 +1,44 @@
+###  Auth Requests
+POST http://localhost:3005/api/auth/signup
+Content-Type: application/json
+
+{
+    "username" : "newUser",
+    "password" : "denuke2",
+    "email" : "new@gmail.com"
+}
+
+###
+POST http://localhost:3005/api/auth/login
+Content-Type: application/json
+
+{
+    "username" : "denukedd19997",
+    "password" : "denuke2",
+    "email" : "denukedd97@gmail.com"
+}
+
+###
+GET http://localhost:3005/api/auth/login/success
+
+
+
+####  User Requests
+GET http://localhost:3005/api/user?count=10
+
+### 
+GET http://localhost:3005/api/user/624a0a28945987d3fb86c9dd
+
+###
+PUT http://localhost:3005/api/user/624a0a28945987d3fb86c9dd
+Content-Type: application/json
+
+{
+    "password" : "denukedissa"
+}
+
+###
+DELETE http://localhost:3005/api/user/6251a4c1a7078005027f402c
+
+### 
+GET http://localhost:3005/api/user/stats

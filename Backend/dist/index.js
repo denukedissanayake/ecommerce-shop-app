@@ -8,8 +8,9 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const passport_1 = __importDefault(require("passport"));
-require('./passport');
+require('./utils/passport');
 const AuthRouter = require('./routes/Auth');
+const UserRouter = require('./routes/User');
 const app = (0, express_1.default)();
 const PORT = 3006;
 app.use((0, cookie_session_1.default)({
@@ -26,6 +27,7 @@ app.use(express_1.default.json());
 //     credentials: true
 // }))
 app.use('/api/auth', AuthRouter);
+app.use('/api/user', UserRouter);
 mongoose_1.default.connect(process.env.MONGODB_URL)
     .then(() => console.log("Connected to MongoDB"))
     .catch(e => console.log(e));

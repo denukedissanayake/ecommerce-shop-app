@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./Schema/User');
+const User = require('../Schema/User');
 const bcrypt_1 = __importDefault(require("bcrypt"));
 passport.use(new LocalStrategy(async (username, password, done) => {
     const existingUser = await User.findOne({ username: username });
