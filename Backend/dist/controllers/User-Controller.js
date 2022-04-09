@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const User = require('../Schema/User');
 const getAllUsers = async (req, res) => {
-    const count = req.query.count;
+    const latest = req.query.latest;
     try {
-        const retrivedUsers = count ?
-            await User.find().sort({ id: -1 }).limit(count)
+        const retrivedUsers = latest ?
+            await User.find().sort({ createdAt: -1 }).limit(10)
             : await User.find();
         res.json(retrivedUsers).status(200);
     }
@@ -15,6 +15,9 @@ const getAllUsers = async (req, res) => {
 };
 const getUserById = async (req, res) => {
     const userId = req.params.id;
+    if (!userId) {
+        return res.json("User not found").status(404);
+    }
     try {
         const retrivedUser = await User.findOne({ id: userId });
         res.json(retrivedUser).status(200);
@@ -25,6 +28,9 @@ const getUserById = async (req, res) => {
 };
 const updateUser = async (req, res) => {
     const userId = req.params.id;
+    if (!userId) {
+        return res.json("User not found").status(404);
+    }
     try {
         const updatedUser = await User.findByIdAndUpdate(userId, {
             $set: req.body
@@ -37,6 +43,9 @@ const updateUser = async (req, res) => {
 };
 const deleteUser = async (req, res) => {
     const userId = req.params.id;
+    if (!userId) {
+        return res.json("User not found").status(404);
+    }
     try {
         const deletedUser = await User.findByIdAndDelete(userId);
         res.json(deletedUser).status(200);

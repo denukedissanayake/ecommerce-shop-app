@@ -1,7 +1,6 @@
 import express from 'express';
 const userControllers = require('../controllers/User-Controller');
 
-
 const router = express.Router()
 
 router.get("/", userControllers.getAllUsers);

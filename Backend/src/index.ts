@@ -8,6 +8,7 @@ require('./utils/passport');
 
 const AuthRouter = require('./routes/Auth');
 const UserRouter = require('./routes/User')
+const ProductRouter = require('./routes/Product')
 
 const app = express();
 const PORT = 3006;
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use('/api/auth', AuthRouter);
 app.use('/api/user', UserRouter);
+app.use('/api/product', ProductRouter);
 
 mongoose.connect(process.env.MONGODB_URL as string)
     .then(() => console.log("Connected to MongoDB"))

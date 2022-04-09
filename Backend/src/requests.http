@@ -24,7 +24,7 @@ GET http://localhost:3005/api/auth/login/success
 
 
 ####  User Requests
-GET http://localhost:3005/api/user?count=10
+GET http://localhost:3005/api/user?latest=true
 
 ### 
 GET http://localhost:3005/api/user/624a0a28945987d3fb86c9dd
@@ -42,3 +42,39 @@ DELETE http://localhost:3005/api/user/6251a4c1a7078005027f402c
 
 ### 
 GET http://localhost:3005/api/user/stats
+
+
+### Product Reqests
+POST http://localhost:3005/api/product
+Content-Type: application/json
+
+{
+    "name" : "Dress",
+    "description" : "Dress for wemen",
+    "image" : "https://www.collinsdictionary.com/images/full/dress_31690953_1000.jpg",
+    "price" : "14.19"
+}
+
+###
+GET http://localhost:3005/api/product
+
+###
+GET http://localhost:3005/api/product?latest=true
+
+###
+GET http://localhost:3005/api/product?category=men
+
+###
+GET http://localhost:3005/api/product/6251dbe86d302ecd21d7bd40
+
+###
+DELETE http://localhost:3005/api/product/6251dbe86d302ecd21d7bd40
+
+###
+
+PUT http://localhost:3005/api/product/6251db9d49afddb7eb398fc7
+Content-Type: application/json
+
+{
+    "categories" : ["shirt", "men", "cashual"]
+}
