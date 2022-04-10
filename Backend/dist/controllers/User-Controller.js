@@ -1,5 +1,9 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const User = require('../Schema/User');
 const getAllUsers = async (req, res) => {
     const latest = req.query.latest;
@@ -15,11 +19,12 @@ const getAllUsers = async (req, res) => {
 };
 const getUserById = async (req, res) => {
     const userId = req.params.id;
+    console.log(userId);
     if (!userId) {
         return res.json("User not found").status(404);
     }
     try {
-        const retrivedUser = await User.findOne({ id: userId });
+        const retrivedUser = await User.findOne({ _id: userId });
         res.json(retrivedUser).status(200);
     }
     catch (e) {
@@ -30,6 +35,9 @@ const updateUser = async (req, res) => {
     const userId = req.params.id;
     if (!userId) {
         return res.json("User not found").status(404);
+    }
+    if (req.body.password) {
+        req.body.password = await bcrypt_1.default.hash(req.body.password, 10);
     }
     try {
         const updatedUser = await User.findByIdAndUpdate(userId, {

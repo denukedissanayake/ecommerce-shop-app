@@ -1,15 +1,20 @@
 import { RequestHandler } from "express";
 const jwt = require('jsonwebtoken');
 
-const VerifyToken : RequestHandler = (req, res, next) => {
-    const authHeader = req.headers.token
+const VerifyToken: RequestHandler = (req, res, next) => {
+    const authHeader = req.headers.authorization
+    if (!authHeader) {
+        return res.json("Not Authorized - No token found").status(404);
+    }
+
     const token = authHeader.toString().split(" ")[1]
+
     if (authHeader) {
-        jwt.Verify(token, process.env.JWT, (error : Error, user: Express.User) => {
+        jwt.verify(token, process.env.JWT, (error : Error, user: Express.User) => {
             if (error) {
                 return res.json("Invalid Token").status(403);
             }
-            req.user = user
+           req.user = user
             next()
         } )
     } else {
@@ -17,7 +22,7 @@ const VerifyToken : RequestHandler = (req, res, next) => {
     }
 }
 
-const VerifyAuthorization : RequestHandler = (req, res, next )=> {
+const VerifyAuthorization: RequestHandler = (req, res, next) => {
     if (req.user['id'] === req.params.id || req.user['isAdmin']) {
         next()
     } else {
@@ -25,7 +30,7 @@ const VerifyAuthorization : RequestHandler = (req, res, next )=> {
     }
 }
 
-const VerifyAdmin : RequestHandler = (req, res, next) => {
+const VerifyAdmin: RequestHandler = (req, res, next) => {
     if (req.user['isAdmin']) {
         next()
     } else {
