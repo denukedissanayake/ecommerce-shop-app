@@ -10,6 +10,8 @@ const AuthRouter = require('./routes/Auth');
 const UserRouter = require('./routes/User')
 const ProductRouter = require('./routes/Product')
 const CartController = require('./routes/Cart');
+const OrderController = require('./routes/Order');
+const PaymnetController = require('./routes/Payments');
 
 const app = express();
 const PORT = 3006;
@@ -32,6 +34,8 @@ app.use('/api/auth', AuthRouter);
 app.use('/api/user', UserRouter);
 app.use('/api/product', ProductRouter);
 app.use('/api/cart', CartController);
+app.use('/api/order', OrderController);
+app.use('api/payments', PaymnetController);
 
 mongoose.connect(process.env.MONGODB_URL as string)
     .then(() => console.log("Connected to MongoDB"))

@@ -9,7 +9,7 @@ const OrderSchema = new mongoose_1.default.Schema({
     products: [
         {
             productId: { type: String },
-            quatity: { type: Number, default: 1 }
+            quantity: { type: Number, default: 1 }
         },
     ],
     amount: { type: Number, required: true },

@@ -22,14 +22,14 @@ const getCarts: RequestHandler = async (req, res) => {
     }
 }
 
-const getCartById: RequestHandler = async (req, res) => {
-    const cartId = req.params.id
-    if (!cartId) {
+const getCartByUserId: RequestHandler = async (req, res) => {
+    const userId = req.params.id
+    if (!userId) {
         return res.json("No cart found").status(404);
     }
 
     try {
-        const retrivedCart = await Cart.findById(cartId)
+        const retrivedCart = await Cart.findOne({userID : userId})
         if (!retrivedCart) {
             return res.json('No product found').status(404);
         }
@@ -76,6 +76,6 @@ module.exports = {
     createCart,
     getCarts,
     updateCart,
-    getCartById,
+    getCartByUserId,
     deleteCart
 }

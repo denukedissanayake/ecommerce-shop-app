@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const passport_1 = __importDefault(require("passport"));
 const router = express_1.default.Router();
-const AuthController = require('../controllers/Auth-Controllers');
+const AuthController = require('../controllers/Auth-Controller');
 router.post('/signup', AuthController.signup);
 router.post('/login', passport_1.default.authenticate('local', { failureRedirect: '/api/auth/login/unsuccess', successRedirect: '/api/auth/login/success' }));
 router.get('/login/unsuccess', AuthController.UnuccessLogin);

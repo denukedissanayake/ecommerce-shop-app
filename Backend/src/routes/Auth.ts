@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 const router = express.Router()
-const AuthController = require('../controllers/Auth-Controllers') 
+const AuthController = require('../controllers/Auth-Controller') 
 
 router.post('/signup', AuthController.signup);
 
