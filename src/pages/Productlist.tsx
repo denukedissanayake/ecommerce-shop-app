@@ -25,6 +25,10 @@ const Productlist = () => {
     setSort(e.target.value)
   }
 
+  const resetFilter = () => {
+    setFilters({})
+  }
+
   return (
     <div>
       <Hotnews/>
@@ -50,6 +54,9 @@ const Productlist = () => {
             <option>Large</option>
             <option>Extra Large</option>
           </select>
+          <span className='filter-reset' onClick={resetFilter}>
+            Reset
+          </span>
         </div>
         <div className='filter'>
           <span className="sort-products-text">Sort Products:</span>
