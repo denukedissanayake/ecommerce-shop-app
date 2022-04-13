@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cookie_session_1 = __importDefault(require("cookie-session"));
 const passport_1 = __importDefault(require("passport"));
+const cors_1 = __importDefault(require("cors"));
 require('./utils/passport');
 const AuthRouter = require('./routes/Auth');
 const UserRouter = require('./routes/User');
@@ -25,6 +26,7 @@ app.use((0, cookie_session_1.default)({
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 // app.use(cors({
 //     origin: 'http://localhost:3000',
 //     methods: 'GET, POST, DELETE, PUT',

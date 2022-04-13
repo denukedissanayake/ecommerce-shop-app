@@ -3,9 +3,10 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import './styles/Productitem.css'
+import {productType} from '../utils/Types'
 
 type productItemProps = {
-    item: ProductItem
+    item: productType
 }
 
 const Productitem = ({item} : productItemProps) => {

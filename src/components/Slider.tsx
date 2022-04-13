@@ -33,10 +33,10 @@ const changeCover = (direction : string) => {
           </div>
           <div className='cover-wrapper'>
             <div className='warapper' style={{backgroundColor: items[coverNumber]['color']}}>
-                <div className="image-container">
-                      <img alt='image' src={items[coverNumber]['image']}/>
+                <div className="slider-image-container">
+                      <img className='slider-image' alt='image' src={items[coverNumber]['image']}/>
                 </div>
-                <div className='info-container'>
+                <div className='slider-info-container'>
                       <h1 className='cover-title'>{items[coverNumber]['titlle']}</h1>
                       <p className='cover-description'>{items[coverNumber]['desription']}</p>
                       <button className='shop-now-button'>Shop Now</button>

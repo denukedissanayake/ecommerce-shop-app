@@ -1,3 +1,5 @@
+import { ChangeEvent, useState } from 'react'
+import { useLocation } from 'react-router'
 import CustomTitle from '../components/CustomTitle'
 import Hotnews from '../components/Hotnews'
 import Navbar from '../components/Navbar'
@@ -5,9 +7,24 @@ import Productitem from '../components/Productitem'
 import Products from '../components/Products'
 import './styles/Productlist.css'
 
-type Props = {}
 
-const Productlist = (props: Props) => {
+const Productlist = () => {
+  const location = useLocation();
+  const category = location.pathname.split("/")[2];
+  const [filters, setFilters] = useState<{ color: string, size: string } | {}>({});
+  const [sort, setSort] = useState("Newest");
+
+  const changeFilterValues = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const sortItems = (e : React.ChangeEvent<HTMLSelectElement>) => {
+    setSort(e.target.value)
+  }
+
   return (
     <div>
       <Hotnews/>
@@ -16,8 +33,8 @@ const Productlist = (props: Props) => {
       <div className='filter-container'>
         <div className='filter'>
           <span className="filter-product-text">Filter Products:</span>
-          <select>
-            <option disabled selected> Select Color</option>
+          <select defaultValue="Select Color" name="color" onChange={changeFilterValues}>
+            <option disabled>Select Color</option>
             <option>Black</option>
             <option>White</option>
             <option>Red</option>
@@ -25,8 +42,8 @@ const Productlist = (props: Props) => {
             <option>Yellow</option>
             <option>Other</option>
           </select>
-          <select>
-            <option disabled selected> Chose Size</option>
+          <select defaultValue="Chose Size" name="size" onChange={changeFilterValues}>
+            <option disabled> Chose Size</option>
             <option>Extra Small</option>
             <option>Small</option>
             <option>Medium</option>
@@ -36,15 +53,15 @@ const Productlist = (props: Props) => {
         </div>
         <div className='filter'>
           <span className="sort-products-text">Sort Products:</span>
-          <select>
-            <option selected> Newest </option>
-            <option>Oldest</option>
-            <option>Price - Higher</option>
-            <option>Price - Lower</option>
+          <select defaultValue="Newest" onChange={sortItems}>
+            <option value="new"> Newest </option>
+            <option value="old">Oldest</option>
+            <option value="asc">Price - Higher</option>
+            <option value="dsc">Price - Lower</option>
           </select>
         </div>
       </div>
-      <Products/>
+      <Products category={category} filters={filters} sort={sort}/>
     </div>
   )
 }
