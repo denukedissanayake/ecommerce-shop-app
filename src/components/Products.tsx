@@ -17,10 +17,10 @@ type ProductPropsType = {
 const Products = ({ category, sort, filters }: ProductPropsType) => {
   const [products, setProducts] = useState<productType[] | []>([]);
   const [filteredProducts, setFilteredProducts] = useState<productType[] | []>([]);
+  const [sortProducts, setSortProducts] = useState<productType[] | []>([]);
 
   const fetchProducts = useCallback(async () => {
     const [retrivedProducts, error] = await getProducts(category);
-    // console.log(retrivedProducts);
     if (error) {
       setProducts([]);
     } else {
@@ -41,7 +41,21 @@ const Products = ({ category, sort, filters }: ProductPropsType) => {
     )
   }, [filters, products])
 
-  console.log(filters);
+  useEffect(() => {
+    if (sort === 'new') {
+      setFilteredProducts((prev) => [...prev].sort((a,b) => a.createdAt - b.createdAt))
+    }
+    if (sort === 'old') {
+      setFilteredProducts((prev) => [...prev].sort((a,b) => b.createdAt - a.createdAt))
+    }
+    if (sort === 'asc') {
+      setFilteredProducts((prev) => [...prev].sort((a,b) => a.price - b.price))
+    }
+    if (sort === 'dsc') {
+      setFilteredProducts((prev) => [...prev].sort((a,b) => b.price - a.price))
+    }
+  }, [sort])
+  
   return (
       <div className='products-container'>
           {filteredProducts.map(item => (

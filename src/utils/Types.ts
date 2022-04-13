@@ -18,5 +18,6 @@ export type productType = {
     size?:  [string],
     color?:  [string],
     categories?:  [string],
-    isAvailable : boolean,
+    isAvailable: boolean,
+    createdAt? : any
   }
