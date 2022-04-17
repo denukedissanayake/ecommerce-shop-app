@@ -17,7 +17,6 @@ type ProductPropsType = {
 const Products = ({ category, sort, filters }: ProductPropsType) => {
   const [products, setProducts] = useState<productType[] | []>([]);
   const [filteredProducts, setFilteredProducts] = useState<productType[] | []>([]);
-  const [sortProducts, setSortProducts] = useState<productType[] | []>([]);
 
   const fetchProducts = useCallback(async () => {
     const [retrivedProducts, error] = await getProducts(category);
@@ -26,11 +25,11 @@ const Products = ({ category, sort, filters }: ProductPropsType) => {
     } else {
       setProducts(retrivedProducts);
     }
-  }, [])
+  }, [category])
 
   useEffect(() => {
     fetchProducts();
-  }, [])
+  }, [fetchProducts])
 
   useEffect(() => {
     filters &&
@@ -54,13 +53,15 @@ const Products = ({ category, sort, filters }: ProductPropsType) => {
     if (sort === 'dsc') {
       setFilteredProducts((prev) => [...prev].sort((a,b) => b.price - a.price))
     }
-  }, [sort])
+}, [sort])
   
   return (
       <div className='products-container'>
-          {filteredProducts.map(item => (
+          {category ?  filteredProducts.map(item => (
               <Productitem key={item._id} item={item} />
-          ))}
+          )): products.slice(0,8).map(item => (
+            <Productitem key={item._id} item={item} />
+        ))}
     </div>
   )
 }

@@ -33,7 +33,7 @@ const Productlist = () => {
     <div>
       <Hotnews/>
       <Navbar />
-      <CustomTitle size={25} title="Our Products" />
+      <CustomTitle size={25} title={category.toUpperCase()} />
       <div className='filter-container'>
         <div className='filter'>
           <span className="filter-product-text">Filter Products:</span>

@@ -2,6 +2,7 @@ import './styles/Navbar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { Link } from 'react-router-dom';
 type Props = {}
 
 const Navbar = (props: Props) => {
@@ -15,7 +16,9 @@ const Navbar = (props: Props) => {
                     <SearchIcon className='search' style={{color: 'grey' , fontSize: 20}}/>
                   </div>
               </div>
-              <div className='navbar-middle'>Denuke Palace</div>
+              <Link to='/' className='router-link'>
+                <div className='navbar-middle'>Denuke Palace</div>
+              </Link>
               <div className='navbar-right'>
                   <div className="menu-item">Login</div>
                   <div className="menu-item">Join Us</div>

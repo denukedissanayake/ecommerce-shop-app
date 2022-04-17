@@ -3,56 +3,99 @@ import Navbar from '../components/Navbar'
 import './styles/Product.css'
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useLocation } from 'react-router-dom';
+import {getProductById} from '../data/get-product-by-id'
+import { useCallback, useEffect, useState } from 'react';
+import {productType} from '../utils/Types'
+import { count } from 'console';
 
 type Props = {}
 
 const Product = (props: Props) => {
-  return (
+  const productId = useLocation().pathname.split("/")[2]
+  const [retrivedProduct, setRetrivedProduct] = useState<productType | null>(null)
+  const [itemCount, setItemCount] = useState(1);
+  const [color, setColor] = useState<string | null>(null)
+  const [size, setSize] = useState<string | null>(null)
+
+  const fetchProductById = useCallback(async () => {
+    const [product, error] = await getProductById(productId);
+    if (!error) {
+      setRetrivedProduct(product);
+    } 
+  }, [productId])
+
+  useEffect(() => {
+    fetchProductById();
+  }, [fetchProductById])
+
+  const increaseCount = () => {
+    setItemCount(itemCount + 1);
+  }
+
+  const decreaseCount = () => {
+    if (itemCount > 1) {
+      setItemCount(itemCount - 1);
+    }
+  }
+
+  const addToCart = () => {
+    console.log(color)
+    console.log(size)
+    console.log(itemCount)
+  }
+
+  return retrivedProduct ? (
     <div>
-        <Hotnews/>
-          <Navbar />
-          <div className='product-container'>
-              <div className="image-container">
-                  <img src='https://images.pexels.com/photos/1462637/pexels-photo-1462637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
-              </div>
-              <div className="info-container">
-                  <h1 className="product-title">Frock - Ladies</h1>
-                  <p className="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore similique labore aliquid, cumque rem odio nulla. Rem voluptates, accusamus dicta nemo eveniet eum explicabo blanditiis? Minima dolorum provident distinctio sunt.</p>
-                  <h3 className="product-price">$99.99</h3>
-
-                  <h3 className='color-size-picker-title'>Choose Your Favourite Color & Size</h3>
-                  <div className="filter-container">
-                      <div className="filter-product choose-color">
-                          <div className='choose-color-item' style={{backgroundColor: "blue"}} />
-                          <div className='choose-color-item' style={{backgroundColor: "black"}} />
-                          <div className='choose-color-item' style={{backgroundColor: "gray"}} />
-                      </div>
-                      <div className="filter-product">
-                        <select>
-                            <option disabled selected> Chose Size</option>
-                            <option>Extra Small</option>
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
-                            <option>Extra Large</option>
-                        </select>
-                      </div>
-                  </div>
-
-                  <div className="purchase-container">
-                      <div className="item-count-container">
-                        <RemoveIcon className='item-add-icon' />
-                        <span className="item-count">0</span>
-                        <AddIcon className='item-add-icon' />
-                      </div>
-                      <div className='add-to-cart-container'>
-                        <button className='add-to-cart'>Add to Cart</button>
-                      </div>
-                  </div>
-              </div>
+      <Hotnews/>
+      <Navbar />
+      <div className='product-container'>
+          <div className="image-container">
+              <img src={retrivedProduct.image} />
           </div>
+          <div className="info-container">
+            <h1 className="product-title">{retrivedProduct.name}</h1>
+            <p className="product-description">{retrivedProduct.description}</p>
+          <h3 className="product-price">${retrivedProduct.price}</h3>
+          {
+            retrivedProduct.size?.length ?
+            <h3 className='color-size-picker-title'>Choose Your Favourite Color & Size</h3> : 
+            <h3 className='color-size-picker-title'>Choose Your Favourite Color</h3>
+          }
+            <div className="product-filter-container">
+              <div className="choose-color">
+              {retrivedProduct.color?.map(color => (
+                  <div key={color} onClick={() => setColor(color)} className='choose-color-item' style={{backgroundColor: `${color}`}} />
+                ))}
+            </div>
+            {
+              retrivedProduct.size?.length ?
+                (<div className="filter-product">
+                <select defaultValue="Chose Size" onChange={(e) => setSize(e.target.value)}>
+                  <option disabled>Chose Size</option>
+                  {retrivedProduct.size?.map(s => (
+                    <option key={s}>{s}</option>
+                  ))}
+                </select>
+                </div>)
+                : null
+            }
+            </div>
+
+            <div className="purchase-container">
+                <div className="item-count-container">
+                  <RemoveIcon className='item-add-icon' onClick={decreaseCount}/>
+                  <span className="item-count">{itemCount}</span>
+                  <AddIcon className='item-add-icon' onClick={increaseCount}/>
+                </div>
+                <div className='add-to-cart-container'>
+                  <button className='add-to-cart' onClick={addToCart}>Add to Cart</button>
+                </div>
+            </div>
+          </div>
+      </div>
     </div>
-  )
+  ) : <div>No product found!</div>
 }
 
 export default Product

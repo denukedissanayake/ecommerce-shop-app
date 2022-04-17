@@ -35,7 +35,7 @@ img {
   margin: 3px;
 }
 
-.filter-container {
+.product-filter-container {
   display: flex;
 }
 
@@ -47,12 +47,13 @@ select {
 }
 
 .filter-product {
-  margin-right: 15px;
+  /* margin-right: 15px; */
 }
 
 .choose-color {
   display: flex;
   align-items: center;
+  margin-right: 25px;
   /* border: 1px solid black;
   border-radius: 5px; */
 }
@@ -63,6 +64,7 @@ select {
   width: 20px;
   border-radius: 50%;
   margin: 0px 5px;
+  border: 1px black solid;
 }
 
 .purchase-container {
