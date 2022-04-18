@@ -3,9 +3,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
-type Props = {}
+import { CartContext } from '../context/CartContext'
+import { useContext } from 'react';
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
+  const { cart } = useContext(CartContext);
+  console.log(cart);
   return (
       <div className="navbar-container">
           <div className='navbar'>
@@ -22,7 +25,7 @@ const Navbar = (props: Props) => {
               <div className='navbar-right'>
                   <div className="menu-item">Login</div>
                   <div className="menu-item">Join Us</div>
-                  <Badge badgeContent={4} color="primary">
+                  <Badge badgeContent={cart.quantity} color="primary">
                         <ShoppingCartOutlinedIcon color="action" />
                     </Badge>
               </div>

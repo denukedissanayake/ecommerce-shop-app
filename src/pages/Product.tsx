@@ -5,18 +5,20 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useLocation } from 'react-router-dom';
 import {getProductById} from '../data/get-product-by-id'
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import {productType} from '../utils/Types'
 import { count } from 'console';
+import { CartContext } from '../context/CartContext';
 
-type Props = {}
 
-const Product = (props: Props) => {
+const Product = () => {
   const productId = useLocation().pathname.split("/")[2]
   const [retrivedProduct, setRetrivedProduct] = useState<productType | null>(null)
   const [itemCount, setItemCount] = useState(1);
   const [color, setColor] = useState<string | null>(null)
   const [size, setSize] = useState<string | null>(null)
+
+  const { cart, dispatch } = useContext(CartContext);
 
   const fetchProductById = useCallback(async () => {
     const [product, error] = await getProductById(productId);
@@ -40,9 +42,10 @@ const Product = (props: Props) => {
   }
 
   const addToCart = () => {
-    console.log(color)
-    console.log(size)
-    console.log(itemCount)
+    dispatch({
+      type: 'ADD_PRODUCT',
+      payload: {...retrivedProduct, itemCount, color, size}
+    })
   }
 
   return retrivedProduct ? (
