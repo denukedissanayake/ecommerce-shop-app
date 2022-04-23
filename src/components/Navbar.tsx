@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
-  console.log(cart);
+
   return (
       <div className="navbar-container">
           <div className='navbar'>
@@ -25,9 +25,11 @@ const Navbar = () => {
               <div className='navbar-right'>
                   <div className="menu-item">Login</div>
                   <div className="menu-item">Join Us</div>
-                  <Badge badgeContent={cart.quantity} color="primary">
-                        <ShoppingCartOutlinedIcon color="action" />
+                  <Link to="/cart">
+                    <Badge badgeContent={cart.quantity} color="primary">
+                    <ShoppingCartOutlinedIcon color="action" />
                     </Badge>
+                  </Link>
               </div>
          </div>
       </div>

@@ -36,7 +36,7 @@ app.use('/api/user', UserRouter);
 app.use('/api/product', ProductRouter);
 app.use('/api/cart', CartController);
 app.use('/api/order', OrderController);
-app.use('api/payments', PaymnetController);
+app.use('/api/payments', PaymnetController);
 
 mongoose.connect(process.env.MONGODB_URL as string)
     .then(() => console.log("Connected to MongoDB"))

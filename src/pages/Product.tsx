@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 import {getProductById} from '../data/get-product-by-id'
 import { useCallback, useContext, useEffect, useState } from 'react';
 import {productType} from '../utils/Types'
-import { count } from 'console';
 import { CartContext } from '../context/CartContext';
 
 
@@ -18,7 +17,7 @@ const Product = () => {
   const [color, setColor] = useState<string | null>(null)
   const [size, setSize] = useState<string | null>(null)
 
-  const { cart, dispatch } = useContext(CartContext);
+  const { dispatch } = useContext(CartContext);
 
   const fetchProductById = useCallback(async () => {
     const [product, error] = await getProductById(productId);
