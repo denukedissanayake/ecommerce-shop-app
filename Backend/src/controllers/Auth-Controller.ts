@@ -48,42 +48,37 @@ const signup : RequestHandler = async (req, res,) => {
 
 const login : RequestHandler = async (req, res,) => {
     const existingUser = await User.findOne({ username: req.body.username });
-    if (existingUser) {
+    if (!existingUser) {
         res.json({
             success: false,
             user: null,
-            message: "User Already Exists"
+            message: "User Not exists. Please SignIn"
         }).status(409)
     }
-    if (!existingUser) {
+    if (existingUser) {
         try {
-            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            const isPasswordCorrect = await bcrypt.compare(req.body.password, existingUser.password);
 
-            const newUser = new User({
-                username: req.body.username,
-                password: hashedPassword,
-                email: req.body.email,
-            })
-
-            const createdUser = await newUser.save();
-            if (createdUser) {
+            if (isPasswordCorrect) {
                 res.json({
                     success: true,
-                    user: createdUser,
-                    message: "User is successfully created"
+                    user: {
+                        username: existingUser.username
+                    },
+                    message: "Login Successfulll"
                 }).status(200);
             } else {
                 res.json({
                     success: false,
                     user: null,
-                    message : "Error while saving the user"
-                }).status(500);
+                    message: "Incorrect password"
+                }).status(200);
             }
         } catch (e) {
             res.json({
                 success: false,
                 user: null,
-                message : "Error while creating the user"
+                message : "Error while Login"
             }).status(500);
         }
     }
