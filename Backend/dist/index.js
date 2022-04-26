@@ -26,12 +26,11 @@ app.use((0, cookie_session_1.default)({
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
-// app.use(cors({
-//     origin: 'http://localhost:3000',
-//     methods: 'GET, POST, DELETE, PUT',
-//     credentials: true
-// }))
+app.use((0, cors_1.default)({
+    origin: 'http://localhost:3000',
+    methods: 'GET, POST, DELETE, PUT',
+    credentials: true,
+}));
 app.use('/api/auth', AuthRouter);
 app.use('/api/user', UserRouter);
 app.use('/api/product', ProductRouter);

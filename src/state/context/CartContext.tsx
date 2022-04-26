@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { CartReducer } from "../reducers/CartReducer";
-import {productType} from "../utils/Types"
+import {productType} from "../../utils/Types"
 
 export type cartType = {
     products: productType[] | any[],

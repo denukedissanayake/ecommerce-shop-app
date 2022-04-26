@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import {getProductById} from '../data/get-product-by-id'
 import { useCallback, useContext, useEffect, useState } from 'react';
 import {productType} from '../utils/Types'
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../state/context/CartContext';
 
 
 const Product = () => {

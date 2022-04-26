@@ -5,11 +5,11 @@ import Signup from '../components/Signup'
 import GoogleIcon from '@mui/icons-material/Google';
 
 const Auth = () => {
-    const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(true);
 
-    const toggleAuthOption = () => {
-        setLogin(!login);
-    }
+  const toggleAuthOption = () => {
+      setLogin(!login);
+  }
 
   return (
       <div className='auth-container'>

@@ -1,7 +1,7 @@
 import Add from '@mui/icons-material/Add'
 import Remove from '@mui/icons-material/Remove'
 import { useContext, useEffect, useState } from 'react'
-import { CartContext } from '../context/CartContext'
+import { CartContext } from '../state/context/CartContext'
 import './styles/Cart.css'
 import StripeCheckout from 'react-stripe-checkout';
 import { makePayments } from '../data/make-payments'
@@ -19,6 +19,7 @@ type CartProductProps = {
 const Cart = () => {
     const { cart, dispatch } = useContext(CartContext);
     const [stripeToken, setStripeToekn] = useState<any | null>(null);
+    const [isPaymentError, setIsPaymentError] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
@@ -34,16 +35,17 @@ const Cart = () => {
         const makePayment = async () => {
             try {
                 const [paymentDetails, error] = await makePayments(stripeToken.id as string, total);
-                console.log(paymentDetails || error)
-
-                if (paymentDetails) {
-                    navigate("/success")
+                console.log(paymentDetails)
+                
+                if (paymentDetails.status === 200) {
+                    navigate("/success", {state : paymentDetails.data})
                 }
+
             } catch (e) {
-                console.log(e);
+                setIsPaymentError(true);
             }
         }
-        makePayment();
+        stripeToken && makePayment();
     }, [stripeToken])
 
     const CartProduct = ({image, productName, productID, productPrice, productQuantity, productColor} :CartProductProps) => {
@@ -126,6 +128,7 @@ const Cart = () => {
                         >
                             <button className='summary-checkout-button'>CHECKOUT</button>
                         </StripeCheckout>
+                      {isPaymentError ? <p>Payment Error!</p> : null}
                     </div>
                 ) : null }
           </div>

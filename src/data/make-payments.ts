@@ -18,5 +18,5 @@ export const makePayments = async (tokenId : string, amount : number) => {
     } catch (e) {
         error = e
     }
-    return [responce.data, error]
+    return [responce, error]
 }

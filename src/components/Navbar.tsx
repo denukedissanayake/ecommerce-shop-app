@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartContext'
+import { CartContext } from '../state/context/CartContext'
 import { useContext } from 'react';
 
 const Navbar = () => {
@@ -23,8 +23,12 @@ const Navbar = () => {
                 <div className='navbar-middle'>Denuke Palace</div>
               </Link>
               <div className='navbar-right'>
-                  <div className="menu-item">Login</div>
-                  <div className="menu-item">Join Us</div>
+                  <Link to="/auth" className='router-link'>
+                    <div className="menu-item">Login</div>
+                  </Link>
+                  <Link to="/auth" className='router-link'>
+                    <div className="menu-item">Join Us</div>
+                  </Link>
                   <Link to="/cart">
                     <Badge badgeContent={cart.quantity} color="primary">
                     <ShoppingCartOutlinedIcon color="action" />
