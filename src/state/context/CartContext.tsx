@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { CartReducer } from "../reducers/CartReducer";
 import {productType} from "../../utils/Types"
 
@@ -21,7 +21,14 @@ export const CartContextProvider = ({ children }: CartContextProviderType) => {
         total: 0
     }
 
-    const [cart, dispatch] = useReducer<any>(CartReducer, cartInitialState);
+    const [cart, dispatch] = useReducer<any, any>(CartReducer, cartInitialState, () => {
+        const cartrData = localStorage.getItem('cart')
+        return cartrData ? JSON.parse(cartrData) : cartInitialState
+    });
+
+    useEffect(() => {
+        localStorage.setItem('cart' , JSON.stringify(cart))
+    }, [cart])
 
     type valueContextType = {
         cart: cartType | any;

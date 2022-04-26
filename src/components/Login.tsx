@@ -6,14 +6,12 @@ import './styles/Login.css'
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { user, dispatch } = useContext(AuthContext);
+    const { user, dispatch } = useContext(AuthContext) || {};
 
     const userLogin = (e: React.SyntheticEvent) => {
         e.preventDefault();
         LoginUser(username, password, dispatch);
-        // console.log(dispatch);
     }
-    
     return (
         <div className='login-container'>
              <h2 className='login-auth-title'>Welcome Back. Please Login</h2>
@@ -30,7 +28,12 @@ const Login = () => {
                     className='login-input'
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                {user.currentUser && !user.currentUser.success
+                    && <label className='login-error-label'>{user.currentUser.message}</label>}
+                {user.error
+                    && <label className='login-error-label'>Something went wrong</label>}
                 <button
+                    disabled={user.isFetching}
                     className='auth-button'
                     onClick={userLogin}
                 >Login</button>

@@ -37,6 +37,15 @@
   cursor: pointer;
 }
 
+.auth-button:disabled{
+  cursor: not-allowed;
+  color: teal;
+}
+
+.login-error-label{
+  color: red;
+}
+
 .forgot-password {
   padding: 10px;
   margin-left: 60px;

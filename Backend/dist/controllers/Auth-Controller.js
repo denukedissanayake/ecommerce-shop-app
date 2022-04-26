@@ -54,18 +54,28 @@ const login = async (req, res) => {
         res.json({
             success: false,
             user: null,
-            message: "User Not exists. Please SignIn"
+            message: "Check your username or Signup"
         }).status(409);
     }
     if (existingUser) {
         try {
             const isPasswordCorrect = await bcrypt_1.default.compare(req.body.password, existingUser.password);
             if (isPasswordCorrect) {
+                const accesToken = jwt.sign({
+                    id: existingUser.id,
+                    username: existingUser.username,
+                    email: existingUser.email,
+                    isAdmin: existingUser.isAdmin
+                }, process.env.JWT, {
+                    expiresIn: "1d"
+                });
                 res.json({
                     success: true,
                     user: {
-                        username: existingUser.username
+                        username: existingUser.username,
+                        email: existingUser.email,
                     },
+                    accesToken,
                     message: "Login Successfulll"
                 }).status(200);
             }
@@ -73,7 +83,7 @@ const login = async (req, res) => {
                 res.json({
                     success: false,
                     user: null,
-                    message: "Incorrect password"
+                    message: "Incorrect Password"
                 }).status(200);
             }
         }
