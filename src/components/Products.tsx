@@ -3,6 +3,8 @@ import Productitem from './Productitem'
 import './styles/Products.css'
 import { getProducts } from '../data/get-products'
 import {productType} from '../utils/Types'
+import InfoBanner from './InfoBanner'
+import LoadingSpinner from './LoadingSpinner'
 
 type ProductPropsType = {
   category?: string | "",
@@ -17,9 +19,13 @@ type ProductPropsType = {
 const Products = ({ category, sort, filters }: ProductPropsType) => {
   const [products, setProducts] = useState<productType[] | []>([]);
   const [filteredProducts, setFilteredProducts] = useState<productType[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchProducts = useCallback(async () => {
+    setIsLoading(true)
     const [retrivedProducts, error] = await getProducts(category);
+    setIsLoading(false)
+  
     if (error) {
       setProducts([]);
     } else {
@@ -56,12 +62,18 @@ const Products = ({ category, sort, filters }: ProductPropsType) => {
 }, [sort])
   
   return (
-      <div className='products-container'>
-          {category ?  filteredProducts.map(item => (
+    <div className='products-container'>
+      {isLoading ? <LoadingSpinner /> : 
+        category ? (
+          filteredProducts.length ? 
+            filteredProducts.map(item => (
               <Productitem key={item._id} item={item} />
-          )): products.slice(0,8).map(item => (
-            <Productitem key={item._id} item={item} />
-        ))}
+            )) : <InfoBanner message='No Products Available' type="WARNING"/>
+          ): products.slice(0, 8).map(item => (
+                <Productitem key={item._id} item={item} />
+        ))
+      }
+
     </div>
   )
 }
