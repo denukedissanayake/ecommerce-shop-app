@@ -4,7 +4,7 @@ const User = require('../Schema/User');
 const jwt = require('jsonwebtoken');
 
 const signup : RequestHandler = async (req, res,) => {
-    const existingUser = await User.findOne({ username: req.body.username });
+    const existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
         res.json({
             success: false,
@@ -17,6 +17,8 @@ const signup : RequestHandler = async (req, res,) => {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
             const newUser = new User({
+                firstname: req.body.firstname,
+                lastname : req.body.lastname,
                 username: req.body.username,
                 password: hashedPassword,
                 email: req.body.email,
@@ -47,12 +49,12 @@ const signup : RequestHandler = async (req, res,) => {
 }
 
 const login : RequestHandler = async (req, res,) => {
-    const existingUser = await User.findOne({ username: req.body.username });
+    const existingUser = await User.findOne({ email: req.body.email });
     if (!existingUser) {
         res.json({
             success: false,
             user: null,
-            message: "Check your username or Signup"
+            message: "Check your email or Signup"
         }).status(409)
     }
     if (existingUser) {
@@ -63,6 +65,8 @@ const login : RequestHandler = async (req, res,) => {
 
                 const accesToken = jwt.sign({
                     id: existingUser.id,
+                    firstname: existingUser.firstname,
+                    lastname: existingUser.lastname,
                     username: existingUser.username,
                     email: existingUser.email,
                     isAdmin : existingUser.isAdmin

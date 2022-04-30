@@ -12,8 +12,8 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <div>
-      <Hotnews/>
       <Navbar/>
+      <Hotnews/>
       <Slider />
       <CustomTitle size={40} title={"Popular Categories - Explore Now"}/>
       <Categories />

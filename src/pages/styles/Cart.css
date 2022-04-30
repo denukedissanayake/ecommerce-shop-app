@@ -52,7 +52,7 @@
 .purchased-product-info {
   display: flex;
   flex-direction: column;
-  flex: 2;
+  flex: 3;
 }
 
 .purchased-product-info {
@@ -60,7 +60,7 @@
 }
 
 .cart-product-details {
-  flex: 2;
+  flex: 4;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@
 }
 
 .cart-price-details {
-  flex: 1.5;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,6 +110,14 @@
 .cart-price-details-price {
   margin: 10px;
   font-size: 30px;
+}
+
+.remove-item-from-cart{
+  border-radius: 5px;
+  padding: 2px 5px;
+  background-color: rgb(234, 80, 80);
+  cursor: pointer;
+  color: black;
 }
 
 .purchased-product-summary {
@@ -189,7 +197,7 @@
 
   .cart-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .cart-product-details {

@@ -11,9 +11,44 @@ export const CartReducer = (state: cartType, action: any) => {
                 quantity : state.quantity +  1,
                 total : state.total + action.payload.price * action.payload.itemCount
             }
-        case 'REMOVE_PRODUCT':
+
+        case 'INCREACE_PRODUCT_COUNT':
+            const updatedItemIndex = state.products.findIndex(product => (
+                product._id === action.payload._id
+            ))
+            const currentItemCount = action.payload.itemCount
+            state.products[updatedItemIndex].itemCount = currentItemCount + 1
+
             return {
-                ...state
+                ...state,
+                products : [...state.products],
+                quantity : state.quantity,
+                total : state.total + action.payload.price
+            }
+        
+        case 'DECREACE_PRODUCT_COUNT':
+            const decreasedItemIndex = state.products.findIndex(product => (
+                product._id === action.payload._id
+            ))
+            const currentDecreasedItemCount = action.payload.itemCount
+            state.products[decreasedItemIndex].itemCount = currentDecreasedItemCount - 1
+
+            return {
+                ...state,
+                products : [...state.products],
+                quantity : state.quantity,
+                total : state.total - action.payload.price
+            }
+
+        case 'REMOVE_PRODUCT':
+            const fiteredProducts = state.products.filter(product => (
+                product._id !== action.payload._id
+            ))
+            return {
+                ...state,
+                products: [...fiteredProducts],
+                quantity: state.quantity - 1,
+                total : state.total - action.payload.price * action.payload.itemCount
             }
     }
 }

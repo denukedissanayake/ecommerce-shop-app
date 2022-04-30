@@ -8,7 +8,8 @@ import {getProductById} from '../data/get-product-by-id'
 import { useCallback, useContext, useEffect, useState } from 'react';
 import {productType} from '../utils/Types'
 import { CartContext } from '../state/context/CartContext';
-
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Product = () => {
   const productId = useLocation().pathname.split("/")[2]
@@ -16,19 +17,36 @@ const Product = () => {
   const [itemCount, setItemCount] = useState(1);
   const [color, setColor] = useState<string | null>(null)
   const [size, setSize] = useState<string | null>(null)
-
-  const { dispatch } = useContext(CartContext);
+  const [loading, setLoading] = useState(false);
+  const [isInCart, setIsInCart] = useState(false);
+ 
+  const { cart, dispatch } = useContext(CartContext);
 
   const fetchProductById = useCallback(async () => {
+    setLoading(true);
     const [product, error] = await getProductById(productId);
     if (!error) {
       setRetrivedProduct(product);
     } 
+    setLoading(false);
   }, [productId])
 
   useEffect(() => {
     fetchProductById();
   }, [fetchProductById])
+
+  const IsInTheCart = () => {
+    cart.products.forEach((product : any) => {
+      if (product._id === retrivedProduct!._id) {
+        setIsInCart(true)
+      }
+    })
+  }
+
+  useEffect(() => {
+    retrivedProduct && IsInTheCart();
+  }, [retrivedProduct])
+
 
   const increaseCount = () => {
     setItemCount(itemCount + 1);
@@ -45,12 +63,17 @@ const Product = () => {
       type: 'ADD_PRODUCT',
       payload: {...retrivedProduct, itemCount, color, size}
     })
+    setIsInCart(true)
   }
 
-  return retrivedProduct ? (
+  return loading ? (
+    <Box sx={{ display: 'flex' }}>
+      <CircularProgress />
+    </Box>
+  ) : ( retrivedProduct ? (
     <div>
-      <Hotnews/>
       <Navbar />
+      <Hotnews/>
       <div className='product-container'>
           <div className="image-container">
               <img src={retrivedProduct.image} />
@@ -91,13 +114,16 @@ const Product = () => {
                   <AddIcon className='item-add-icon' onClick={increaseCount}/>
                 </div>
                 <div className='add-to-cart-container'>
+                {isInCart ?
+                  <button className='add-to-cart'>Already in The Cart</button> :
                   <button className='add-to-cart' onClick={addToCart}>Add to Cart</button>
+                }
                 </div>
             </div>
           </div>
       </div>
     </div>
-  ) : <div>No product found!</div>
+  ) : <div>No product found!</div>)
 }
 
 export default Product

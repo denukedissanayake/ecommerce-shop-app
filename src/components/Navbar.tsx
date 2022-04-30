@@ -5,9 +5,18 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../state/context/CartContext'
 import { useContext } from 'react';
+import { AuthContext } from '../state/context/AuthContext';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
+  const { user, dispatch } = useContext(AuthContext);
+
+  const logout = () => {
+    localStorage.removeItem('user');
+    dispatch({
+      type: 'LOGOUT',
+    });
+  }
 
   return (
       <div className="navbar-container">
@@ -23,12 +32,14 @@ const Navbar = () => {
                 <div className='navbar-middle'>Denuke Palace</div>
               </Link>
               <div className='navbar-right'>
-                  <Link to="/auth" className='router-link'>
-                    <div className="menu-item">Login</div>
-                  </Link>
-                  <Link to="/auth" className='router-link'>
-                    <div className="menu-item">Join Us</div>
-                  </Link>
+                  {user.currentUser && <div className="menu-item">PROFILE</div>}
+                  {user.currentUser && <div className="menu-item" onClick={logout}>LOGOUT</div>}
+                  {!user.currentUser && <Link to="/auth" className='router-link'>
+                    <div className="menu-item">LOGIN</div>
+                  </Link>}
+                  {!user.currentUser && <Link to="/auth" className='router-link'>
+                    <div className="menu-item">JOIN US</div>
+                  </Link>}
                   <Link to="/cart">
                     <Badge badgeContent={cart.quantity} color="primary">
                     <ShoppingCartOutlinedIcon color="action" />

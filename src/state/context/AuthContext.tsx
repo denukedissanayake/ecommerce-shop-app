@@ -6,7 +6,17 @@ type AuthContextProviderType = {
     children : React.ReactNode
 }
 
-export const AuthContext = createContext<any| null>(null);
+type UserType = {
+    currentUser: {
+        accesToken: string,
+        message: string,
+        success: string
+    },
+    isFetching: boolean,
+    error: boolean
+}
+
+export const AuthContext = createContext<UserType| any>(null);
 
 export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
     const authInitialState = {
@@ -21,11 +31,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
     });
 
     useEffect(() => {
-        localStorage.setItem('user' , JSON.stringify(user))
+        user && localStorage.setItem('user' , JSON.stringify(user))
     }, [user])
 
     type valueContextType = {
-        user: any;
+        user: UserType | any;
         dispatch : React.DispatchWithoutAction
     }
 

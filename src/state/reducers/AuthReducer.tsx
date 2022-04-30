@@ -19,9 +19,12 @@ export const AuthReducer = (state: any, action: any) => {
                 isFetching: false,
                 error: true
             }
-        case 'SIGNUP':
+        case 'LOGOUT':
             return {
-                ...state
+                ...state,
+                currentUser: null,
+                isFetching: false,
+                error: false
             }
     }
 }

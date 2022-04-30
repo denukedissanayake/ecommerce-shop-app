@@ -4,13 +4,13 @@ import { login as LoginUser } from '../state/data/login-users';
 import './styles/Login.css'
 
 const Login = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { user, dispatch } = useContext(AuthContext) || {};
 
     const userLogin = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        LoginUser(username, password, dispatch);
+        LoginUser(email, password, dispatch);
     }
     return (
         <div className='login-container'>
@@ -20,7 +20,7 @@ const Login = () => {
                     type="email"
                     placeholder='Email Address'
                     className='login-input'
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
                     type="password"
@@ -30,7 +30,7 @@ const Login = () => {
                 />
                 {user.currentUser && !user.currentUser.success
                     && <label className='login-error-label'>{user.currentUser.message}</label>}
-                {user.error
+                {user.currentUser && user.error
                     && <label className='login-error-label'>Something went wrong</label>}
                 <button
                     disabled={user.isFetching}

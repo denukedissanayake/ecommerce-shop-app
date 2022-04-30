@@ -46,6 +46,10 @@
   color: red;
 }
 
+.login-success-label{
+  color: green;
+}
+
 .forgot-password {
   padding: 10px;
   margin-left: 60px;

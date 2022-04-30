@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { useLocation } from 'react-router'
 import CustomTitle from '../components/CustomTitle'
+import Footer from '../components/Footer'
 import Hotnews from '../components/Hotnews'
 import Navbar from '../components/Navbar'
 import Productitem from '../components/Productitem'
@@ -31,7 +32,6 @@ const Productlist = () => {
 
   return (
     <div>
-      <Hotnews/>
       <Navbar />
       <CustomTitle size={25} title={category.toUpperCase()} />
       <div className='filter-container'>
@@ -68,7 +68,8 @@ const Productlist = () => {
           </select>
         </div>
       </div>
-      <Products category={category} filters={filters} sort={sort}/>
+      <Products category={category} filters={filters} sort={sort} />
+      <Footer/>
     </div>
   )
 }

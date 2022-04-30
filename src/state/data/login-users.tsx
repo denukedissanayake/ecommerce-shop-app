@@ -9,7 +9,7 @@ export const login = async (username: string, password: string, dispatch: any) =
     try {
         const [userDetails, error] = await loginUser(username, password);
 
-        if (!error && userDetails.data) {
+        if (!error && userDetails.data.success) {
             dispatch({
                 type: 'LOGIN_SUCCESS',
                 payload: userDetails.data

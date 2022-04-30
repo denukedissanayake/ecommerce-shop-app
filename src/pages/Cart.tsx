@@ -5,19 +5,16 @@ import { CartContext } from '../state/context/CartContext'
 import './styles/Cart.css'
 import StripeCheckout from 'react-stripe-checkout';
 import { makePayments } from '../data/make-payments'
-import { useNavigate } from 'react-router-dom';
-
-type CartProductProps = {
-    image: string,
-    productName: string,
-    productID: string,
-    productPrice: number,
-    productQuantity: number,
-    productColor?: string | null
-}
+import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Hotnews from '../components/Hotnews'
+import Footer from '../components/Footer'
+import { AuthContext } from '../state/context/AuthContext'
+import InfoBanner from '../components/InfoBanner'
 
 const Cart = () => {
     const { cart, dispatch } = useContext(CartContext);
+    const { user } = useContext(AuthContext);
     const [stripeToken, setStripeToekn] = useState<any | null>(null);
     const [isPaymentError, setIsPaymentError] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -25,7 +22,7 @@ const Cart = () => {
     const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
     const shippingCost = 10;
     const discount = 2;
-    const total = cart.total + shippingCost + discount;
+    const total = cart.total + shippingCost - discount;
 
     const onToken = (token: any) => {
         setStripeToekn(token);
@@ -34,7 +31,7 @@ const Cart = () => {
     useEffect(() => {
         const makePayment = async () => {
             try {
-                const [paymentDetails, error] = await makePayments(stripeToken.id as string, total);
+                const [paymentDetails, error] = await makePayments(stripeToken.id as string, total, user?.currentUser?.accesToken);
                 console.log(paymentDetails)
                 
                 if (paymentDetails.status === 200) {
@@ -45,31 +42,60 @@ const Cart = () => {
                 setIsPaymentError(true);
             }
         }
-        stripeToken && makePayment();
+        user.currentUser && stripeToken && makePayment();
     }, [stripeToken])
 
-    const CartProduct = ({image, productName, productID, productPrice, productQuantity, productColor} :CartProductProps) => {
+    const removeFromCart = (product : any) => {
+        dispatch({
+            type: "REMOVE_PRODUCT",
+            payload : {...product}
+        })
+    }
+
+    const addMoreItems = (product: any) => {
+        dispatch({
+            type: "INCREACE_PRODUCT_COUNT",
+            payload : {...product}
+        })
+    }
+
+    const removeItems = (product: any) => {
+        if (product.itemCount > 1) {
+            dispatch({
+                type: "DECREACE_PRODUCT_COUNT",
+                payload : {...product}
+            })
+        }
+    }
+
+    const CartProduct = (product: any) => {
         return(
             <div className='cart-wrapper' style={{ display: "flex", margin: "10px" }}>
                 <div className='cart-product-details'>
                     <div>
-                        <img className='cart-product-details-image' src={image} />
+                        <img className='cart-product-details-image' src={product.product.image} />
                     </div>
                     <div className='cart-product-details-info'>
-                        <p className='cart-product-details-info-name'><b>Product: </b>{productName}</p>
-                        <p className='cart-product-details-info-id'><b>Product ID: </b>{productID}</p>
-                        {productColor ? <p className='cart-product-details-info-color'><b>Product Color: </b>{productColor}</p> : null}
+                        <p className=''><b>Product: </b>{product.product.name}</p>
+                        <p className=''><b>Product Description: </b>{product.product.description}</p>
+                        <p className=''><b>Price: </b>${product.product.price}</p>
+                        <p className=''><b>Total Price: </b>${product.product.price*product.product.itemCount}</p>
+                        {product.product.productColor ? <p className='cart-product-details-info-color'><b>Product Color: </b>{product.product.color}</p> : null}
                         
                     </div>
                 </div>
                  <div className='cart-price-details'>
                     <div className='cart-price-details-amount'>
-                        <Remove className='cart-price-details-amount-icon'/>
-                        <span className='cart-price-details-amount-number'>{productQuantity}</span>
-                        <Add className='cart-price-details-amount-icon'/>
+                        <span onClick={() => removeItems(product.product)} >
+                            <Remove className='cart-price-details-amount-icon'/>
+                        </span>
+                        <span className='cart-price-details-amount-number'>{product.product.itemCount}</span>
+                        <span onClick={() => addMoreItems(product.product)}>
+                            <Add className='cart-price-details-amount-icon'/>
+                        </span>
                     </div>
-                    <div className='cart-price-details-price'>
-                        <span>$ {productPrice*productQuantity}</span>
+                    <div className='remove-item-from-cart' onClick={() => removeFromCart(product.product)}>
+                        <span><b>REMOVE</b></span>
                     </div>
                 </div>
             </div>
@@ -85,54 +111,60 @@ const Cart = () => {
         )
     }
 
-  return (
-      <div className='cart-container'>
-          <h1 className="cart-title">Shopping Items</h1>
-          <div className='cart-top-container'>
-              <button className='top-button continue-shoping-button'>Continue Shopping</button>
-              <span className='top-text'>Shopping Cart(2)</span>
-              <span className='top-text'>My Wishlist(2)</span>
-              <button className='top-button checkout-button'>Checkout</button>
-          </div>
-          <div className='cart-bottom-container'>
-              <div className='purchased-product-info'>
-                  {cart.products?.length ? cart.products.map((product:any) => (
-                      <CartProduct
-                          key={product._id}
-                          image={product.image}
-                          productName = {product.name}
-                          productID={product._id}
-                          productPrice={product.price}
-                          productQuantity={product.itemCount}
-                          productColor={product.color}
-                      />
-                  )) :
-                      <p>Cart is empty!!!</p>
-                  }
-              </div>
-                {!cart.products.length ? (
-                    <div className='purchased-product-summary'>
-                        <h1 className="summary-title">Order Summary</h1>
-                        <SummaryItem topic="Sub Total" price={cart.total}/>
-                        <SummaryItem topic="Shipping Cost" price={shippingCost} />
-                        <SummaryItem topic="Discount" price={discount} />
-                        <SummaryItem isTotal={true} topic="Total" price={cart.total + shippingCost - discount} />
-                        <StripeCheckout
-                          name="Denuke's Palace"
-                          billingAddress
-                          shippingAddress
-                          description='Easy pay with Ninja Pay'
-                          amount={cart.total + shippingCost - discount}
-                          stripeKey={STRIPE_KEY as string}
-                          token={onToken}
-                        >
-                            <button className='summary-checkout-button'>CHECKOUT</button>
-                        </StripeCheckout>
-                      {isPaymentError ? <p>Payment Error!</p> : null}
+    return (
+        <>
+            <Navbar />
+            <Hotnews/>
+            <div className='cart-container'>
+                <h1 className="cart-title">Shopping Items</h1>
+                <div className='cart-top-container'>
+                    <button className='top-button continue-shoping-button'>Continue Shopping</button>
+                    <span className='top-text'>Shopping Cart(2)</span>
+                    <span className='top-text'>My Wishlist(2)</span>
+                    <button className='top-button checkout-button'>Checkout</button>
+                </div>
+                <div className='cart-bottom-container'>
+                    <div className='purchased-product-info'>
+                        {cart.products?.length ? cart.products.map((product: any) => (
+                            <CartProduct
+                                key={product._id}
+                                product={product}
+                            />
+                        )) :
+                            <InfoBanner message="CART IS EMPTY. HURRY UP! SHOP NOW!" type="INFO"/>
+                        }
                     </div>
-                ) : null }
-          </div>
-      </div>
+                    {cart.products.length ? (
+                        <div className='purchased-product-summary'>
+                            <h1 className="summary-title">Order Summary</h1>
+                            <SummaryItem topic="Sub Total" price={cart.total} />
+                            <SummaryItem topic="Shipping Cost" price={shippingCost} />
+                            <SummaryItem topic="Discount" price={discount} />
+                            <SummaryItem isTotal={true} topic="Total" price={cart.total + shippingCost - discount} />
+                            {user.currentUser ?
+                                <StripeCheckout
+                                    name="Denuke's Palace"
+                                    billingAddress
+                                    shippingAddress
+                                    description='Easy pay with Ninja Pay'
+                                    amount={total * 100}
+                                    stripeKey={STRIPE_KEY as string}
+                                    token={onToken}
+                                >
+                                    <button className='summary-checkout-button'>CHECKOUT</button>
+                                </StripeCheckout> :
+
+                                <Link to="/auth" className='router-link'>
+                                    <button className='summary-checkout-button'>LOGIN TO CHECKOUT</button>
+                                </Link>
+                            }
+                            {isPaymentError ? <InfoBanner message="PAYMENET ERROR" type="ERROR"/> : null}
+                        </div>
+                    ) : null}
+                </div>
+            </div>
+            <Footer/>
+        </>
   )
 }
 
