@@ -4,18 +4,21 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../state/context/CartContext'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../state/context/AuthContext';
+import { Modal } from '@mui/material';
 
 const Navbar = () => {
   const { cart } = useContext(CartContext);
   const { user, dispatch } = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false)
 
   const logout = () => {
     localStorage.removeItem('user');
     dispatch({
       type: 'LOGOUT',
     });
+    setShowModal(false)
   }
 
   return (
@@ -33,7 +36,7 @@ const Navbar = () => {
               </Link>
               <div className='navbar-right'>
                   {user.currentUser && <div className="menu-item">PROFILE</div>}
-                  {user.currentUser && <div className="menu-item" onClick={logout}>LOGOUT</div>}
+                  {user.currentUser && <div className="menu-item" onClick={() => setShowModal(true)}>LOGOUT</div>}
                   {!user.currentUser && <Link to="/auth" className='router-link'>
                     <div className="menu-item">LOGIN</div>
                   </Link>}
@@ -46,7 +49,18 @@ const Navbar = () => {
                     </Badge>
                   </Link>
               </div>
-         </div>
+            </div>
+            <Modal open={showModal} onClose={() => setShowModal(false)} >
+              <div className='modal-item-container'>
+                <div className='logout-container'>
+                  <p className='logout-container-text'>Do you want to logout?</p>
+                  <div className='logout-container-buttton-container'>
+                    <button className='logout-container-buttton' onClick={logout}>LOGOUT</button>
+                    <button className='logout-container-buttton' onClick={() => setShowModal(false)}>CANCEL</button>
+                  </div>
+                </div>
+              </div>
+            </Modal>
       </div>
   )
 }

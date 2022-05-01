@@ -2,12 +2,10 @@ import './styles/Slider.css'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import { useState } from 'react';
-import {items} from '../utils/data'
-
+import { items } from '../utils/data'
 
 const Slider = () => {
-    
-const [coverNumber, setCoverNumber] = useState(0)
+    const [coverNumber, setCoverNumber] = useState(0)
 
 const changeCover = (direction : string) => {
     if (direction === 'left') {
@@ -27,10 +25,10 @@ const changeCover = (direction : string) => {
 }
     
   return (
-      <div className='slider-container'>
+    <div className='slider-container'>
         <div className='arrows left-arrow' onClick={() => changeCover('left')}>
             <ArrowBackIosNewOutlinedIcon/>
-          </div>
+        </div>
           <div className='cover-wrapper'>
             <div className='warapper' style={{backgroundColor: items[coverNumber]['color']}}>
                 <div className="slider-image-container">
@@ -42,8 +40,8 @@ const changeCover = (direction : string) => {
                       <button className='shop-now-button'>Shop Now</button>
                 </div>
             </div>
-          </div>
-          <div className='arrows right-arrow' onClick={() => changeCover('right')}>
+        </div>
+        <div className='arrows right-arrow' onClick={() => changeCover('right')}>
             <ArrowForwardIosOutlinedIcon/>
         </div>
     </div>
