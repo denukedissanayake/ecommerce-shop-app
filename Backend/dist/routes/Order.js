@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const orderControllers = require('../controllers/Orders-Controller');
 const { VerifyToken, VerifyAdmin, VerifyAuthorization } = require('../utils/auth-middlewares');
 const router = express_1.default.Router();
-router.post('/', VerifyToken, VerifyAuthorization, orderControllers.createOrder);
+router.post('/', VerifyToken, orderControllers.createOrder);
 router.get('/', VerifyToken, VerifyAdmin, orderControllers.getOrders);
 router.get('/sales', VerifyToken, VerifyAdmin, orderControllers.getMonthlyIncome);
 router.get('/:id', VerifyToken, VerifyAuthorization, orderControllers.getOrderByUserId);

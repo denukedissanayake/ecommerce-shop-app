@@ -20,9 +20,9 @@ const Cart = () => {
     const navigate = useNavigate();
 
     const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
-    const shippingCost = 10;
-    const discount = 2;
-    const total = cart.total + shippingCost - discount;
+    const shippingCost : number = 10;
+    const discount: number = 2;
+    const total : number = (cart.total + shippingCost - discount).toFixed(2) as any;
 
     const onToken = (token: any) => {
         setStripeToekn(token);
@@ -32,10 +32,18 @@ const Cart = () => {
         const makePayment = async () => {
             try {
                 const [paymentDetails, error] = await makePayments(stripeToken.id as string, total, user?.currentUser?.accesToken);
-                console.log(paymentDetails)
-                
-                if (paymentDetails.status === 200) {
-                    navigate("/success", {state : paymentDetails.data})
+
+                if (paymentDetails.status === 200 && paymentDetails.data.status === "succeeded") {
+                    navigate("/order", {
+                        state: {
+                            data: paymentDetails.data,
+                            cart : cart
+                        } as any
+                    })
+                }
+
+                if (paymentDetails.status === 200 && paymentDetails.data.status !== "succeeded") {
+                    setIsPaymentError(true);
                 }
 
             } catch (e) {
@@ -110,7 +118,6 @@ const Cart = () => {
             </div>
         )
     }
-
     return (
         <>
             <Navbar />
@@ -131,23 +138,23 @@ const Cart = () => {
                                 product={product}
                             />
                         )) :
-                            <InfoBanner message="CART IS EMPTY. HURRY UP! SHOP NOW!" type="INFO"/>
+                            <InfoBanner message="CART IS EMPTY. HURRY UP! SHOP NOW!" type="INFO" alignment='CENTER'/>
                         }
                     </div>
                     {cart.products.length ? (
                         <div className='purchased-product-summary'>
                             <h1 className="summary-title">Order Summary</h1>
-                            <SummaryItem topic="Sub Total" price={cart.total} />
+                            <SummaryItem topic="Sub Total" price={(cart.total).toFixed(2)} />
                             <SummaryItem topic="Shipping Cost" price={shippingCost} />
                             <SummaryItem topic="Discount" price={discount} />
-                            <SummaryItem isTotal={true} topic="Total" price={cart.total + shippingCost - discount} />
+                            <SummaryItem isTotal={true} topic="Total" price={total} />
                             {user.currentUser ?
                                 <StripeCheckout
                                     name="Denuke's Palace"
                                     billingAddress
                                     shippingAddress
                                     description='Easy pay with Ninja Pay'
-                                    amount={total * 100}
+                                    amount={total}
                                     stripeKey={STRIPE_KEY as string}
                                     token={onToken}
                                 >

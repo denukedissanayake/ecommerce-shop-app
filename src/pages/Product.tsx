@@ -116,13 +116,20 @@ const Product = () => {
                 <div className='add-to-cart-container'>
                   {isInCart ?
                     <button className='add-to-cart'>Already in The Cart</button> :
-                    <button className='add-to-cart' onClick={addToCart}>Add to Cart</button>
+                    <button
+                      className='add-to-cart'
+                      onClick={addToCart}
+                      disabled={ retrivedProduct.color && !color || retrivedProduct.size?.length && !size }
+                    >
+                      Add to Cart
+                    </button>
                   }
                 </div>
               </div>
             </div>
           </div>
-          : <InfoBanner message='No Product Found' type="WARNING" />
+          :
+             <InfoBanner message='No Product Found' type="WARNING" alignment="LEFT"/>
         }
       </div>
   ) 

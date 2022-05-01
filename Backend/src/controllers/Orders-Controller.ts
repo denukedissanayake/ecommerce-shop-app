@@ -5,6 +5,13 @@ const createOrder: RequestHandler = async (req, res) => {
     const newOrder = new Order(req.body);
 
     try {
+        const existingOrder = await Order.findOne({ srripeOrderID: req.body.srripeOrderID })
+        if (existingOrder) {
+            return res.json(existingOrder).status(401)
+        }
+    }catch (e){}
+
+    try {
         const createdOrder = await newOrder.save();
         return res.json(createdOrder).status(200);
     } catch (e) {

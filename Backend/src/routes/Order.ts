@@ -4,7 +4,7 @@ const { VerifyToken , VerifyAdmin , VerifyAuthorization } = require('../utils/au
 
 const router = express.Router()
 
-router.post('/', VerifyToken, VerifyAuthorization, orderControllers.createOrder);
+router.post('/', VerifyToken, orderControllers.createOrder);
 
 router.get('/', VerifyToken, VerifyAdmin, orderControllers.getOrders);
 

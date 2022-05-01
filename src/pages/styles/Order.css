@@ -1,0 +1,50 @@
+.order-container{
+    height: calc(100vh - 90px);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: linear-gradient(rgba(45, 44, 44, 0.9), rgba(0, 0, 0, 0.8)),
+    url("https://images.pexels.com/photos/6818102/pexels-photo-6818102.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    background-position: center;
+    background-size: cover;
+}
+
+.order-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.order-succes-message{
+    text-align: left;
+    width: 90%;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.order-page-navigation-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.order-page-navigation-button{
+    margin: 20px;
+    padding: 10px;
+    width: 250px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+}

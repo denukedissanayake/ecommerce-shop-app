@@ -7,7 +7,7 @@ import Productlist from './pages/Productlist';
 import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
 import { CartContextProvider } from './state/context/CartContext'
 import { AuthContext, AuthContextProvider } from './state/context/AuthContext';
-import Success from './pages/Success';
+import Order from './pages/Order';
 import { useContext } from 'react';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
             <Route path='/product/:productId' element={<Product />} />
             <Route path='/auth' element={ user.currentUser ? <Navigate to='/' />: <Auth /> } />
             <Route path='/cart' element={<Cart />} />
-            <Route path='/success' element={<Success />} />
+            <Route path='/order' element={<Order />} />
             <Route path="*" element={<h1>Not Found - 404</h1>} />
           </Routes>
         </div>
