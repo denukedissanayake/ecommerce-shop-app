@@ -2,12 +2,8 @@
 
 # dependencies
 /node_modules
-/Backend/node_modules
 /.pnp
 .pnp.js
-
-/Backend/.env
-/Backend/src/requests
 
 .env
 
