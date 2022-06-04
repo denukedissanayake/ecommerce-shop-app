@@ -90,6 +90,7 @@ const Product = () => {
               <div className="product-filter-container">
                 <div className="choose-color">
                   {retrivedProduct.color?.map(color => (
+                    color !== "Other" &&
                     <div key={color} onClick={() => setColor(color)} className='choose-color-item' style={{ backgroundColor: `${color}` }} />
                   ))}
                 </div>
@@ -97,7 +98,7 @@ const Product = () => {
                   retrivedProduct.size?.length ?
                     (<div className="filter-product">
                       <select defaultValue="Chose Size" onChange={(e) => setSize(e.target.value)}>
-                        <option disabled>Chose Size</option>
+                        <option disabled>Choose Size</option>
                         {retrivedProduct.size?.map(s => (
                           <option key={s}>{s}</option>
                         ))}
