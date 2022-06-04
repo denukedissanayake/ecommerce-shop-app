@@ -5,7 +5,7 @@ const img3 = require('../images/img3.png')
 export const items = [
     {
         image: img1 ,
-        titlle: 'BEST Store in HERE!',
+        titlle: 'BEST Store is HERE!',
         desription: 'BEST Items for BEST Price. Experiece Upto 50% Discount.',
         color : '#ACDDDE'
     },
@@ -26,90 +26,38 @@ export const items = [
 export const categories = [
     {
         id: 1,
-        image: 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        title: 'Shirts & T Shirts',
-        category: 'men'
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-web-app.appspot.com/o/pexels-andrea-piacquadio-846741%20(2).jpg?alt=media&token=5bff8bb9-0868-4e1f-819a-a526fec82589',
+        title: 'Men',
+        category: 'Men'
     },
     {
         id: 2,
-        image: 'https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        title: 'Blouses & Tops',
-        category: 'women'
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-web-app.appspot.com/o/pexels-pixabay-372042%20(1).jpg?alt=media&token=76ef847f-c19a-4e8a-b321-304f4b260fca',
+        title: 'Women',
+        category: 'Women'
     },
     {
         id: 3,
-        image: 'https://images.pexels.com/photos/965324/pexels-photo-965324.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        title: 'Trousers & Shorts',
-        category: 'office-wear'
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-web-app.appspot.com/o/pexels-mentatdgt-937481%20(1).jpg?alt=media&token=24b7d3fb-a9ba-4a53-89f8-902a121c2ceb',
+        title: 'Office Wear',
+        category: 'Office-Ware'
     },
     {
         id: 4,
-        image: 'https://images.pexels.com/photos/794062/pexels-photo-794062.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        title: 'Pants and Skirts',
-        category: 'casual-wear'
-    },
-    {
-        id: 5,
-        image: 'https://images.pexels.com/photos/1374910/pexels-photo-1374910.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        title: 'Warebles',
-        category: 'wearable'
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-web-app.appspot.com/o/pexels-ketut-subiyanto-4246202%20(1).jpg?alt=media&token=05c61e32-3798-4cfc-b474-8422249917f3',
+        title: 'Casual Ware',
+        category: 'Casual-Ware'
     },
     {
         id: 6,
-        image: 'https://images.pexels.com/photos/9619665/pexels-photo-9619665.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        title: 'Underwears',
-        category: 'underwear'
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-web-app.appspot.com/o/pexels-aevrun-6495011%20(1).jpg?alt=media&token=1aba79d1-163d-4bfb-8d90-a2e1f98d2f29',
+        title: 'Shoes',
+        category: 'Shoes'
+    },
+    {
+        id: 8,
+        image: 'https://firebasestorage.googleapis.com/v0/b/ecommerce-shop-web-app.appspot.com/o/pexels-amina-filkins-5560018%20(1).jpg?alt=media&token=14c9c90e-f2b3-43e3-9d5a-cc2d1e7898f2',
+        title: 'Kids',
+        category: 'Kids'
     },
 ]
-
-export const products = [
-    {
-        id: 1,
-        image: 'https://images.pexels.com/photos/3552358/pexels-photo-3552358.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-        id: 2,
-        image: 'https://images.pexels.com/photos/1598508/pexels-photo-1598508.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-        id: 3,
-        image: 'https://images.pexels.com/photos/3782788/pexels-photo-3782788.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-        id: 4,
-        image: 'https://images.pexels.com/photos/6310184/pexels-photo-6310184.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-        id: 5,
-        image: 'https://images.pexels.com/photos/2078268/pexels-photo-2078268.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-        id: 6,
-        image: 'https://images.pexels.com/photos/8148576/pexels-photo-8148576.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    // {
-    //     id: 7,
-    //     image: 'https://images.pexels.com/photos/10975864/pexels-photo-10975864.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    // },
-    // {
-    //     id: 8,
-    //     image: 'https://images.pexels.com/photos/7081109/pexels-photo-7081109.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    // },
-    // {
-    //     id: 9,
-    //     image: 'https://images.pexels.com/photos/1038039/pexels-photo-1038039.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    // },
-    {
-        id: 10,
-        image: 'https://images.pexels.com/photos/2994952/pexels-photo-2994952.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    // {
-    //     id: 11,
-    //     image: 'https://images.pexels.com/photos/1865131/pexels-photo-1865131.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    // },
-    {
-        id: 12,
-        image: 'https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-]
-
