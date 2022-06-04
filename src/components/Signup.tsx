@@ -38,8 +38,6 @@ const Signup = () => {
             if (response.data.user) {
                 setIsSuccess("Signup Successfull")
             }
-
-            console.log(response, error)
         }
     }
 

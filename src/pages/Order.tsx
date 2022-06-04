@@ -14,9 +14,6 @@ const Success = () => {
   const stateData = location.state as any;
   const purchasedProducts: { productId: string; quantity: number; }[] = [];
 
-  console.log(stateData)
-
-
   stateData && stateData.cart.products && stateData.cart.products.forEach((item:any) => {
     purchasedProducts.push({
       productId: item._id,

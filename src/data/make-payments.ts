@@ -4,7 +4,6 @@ export const makePayments = async (tokenId : string, amount : number, userAuthTo
     let responce = null
     let error = null
     
-    console.log(amount * 100)
     try {
         responce = await axios.post(`${process.env.REACT_APP_BASE_URL}/payments`, {
             tokenId,

@@ -12,7 +12,6 @@ import { useContext } from 'react';
 
 function App() {
   const { user } = useContext(AuthContext) || {};
-  console.log(user)
 
   return (
     <CartContextProvider>
