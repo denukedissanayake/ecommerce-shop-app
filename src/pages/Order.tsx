@@ -12,12 +12,20 @@ const Success = () => {
   const { user } = useContext(AuthContext);
   const [orderId, setOrderId] = useState(null);
   const stateData = location.state as any;
-  const purchasedProducts: { productId: string; quantity: number; }[] = [];
+  const purchasedProducts: any[] = [];
+
+  console.log(stateData.cart.products)
 
   stateData && stateData.cart.products && stateData.cart.products.forEach((item:any) => {
     purchasedProducts.push({
       productId: item._id,
-      quantity: item.itemCount
+      quantity: item.itemCount,
+      productName: item.name,
+      productPrice: item.price,
+      productImage: item.image,
+      productBrand: item.brand,
+      productSize: item.size,
+      productColor: item.color,
     })
   });
 

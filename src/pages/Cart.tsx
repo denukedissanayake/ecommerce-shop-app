@@ -19,6 +19,8 @@ const Cart = () => {
     const [isPaymentError, setIsPaymentError] = useState<boolean>(false);
     const navigate = useNavigate();
 
+    console.log(cart)
+
     const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
     const shippingCost : number = 10;
     const discount: number = 2;
