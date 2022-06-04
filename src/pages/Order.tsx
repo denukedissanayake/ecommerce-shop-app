@@ -5,16 +5,16 @@ import Hotnews from "../components/Hotnews";
 import Navbar from "../components/Navbar";
 import { placeOrder } from "../data/place-order";
 import { AuthContext } from "../state/context/AuthContext";
+import { CartContext } from "../state/context/CartContext";
 import "./styles/Order.css"
 
 const Success = () => {
   const location = useLocation()
   const { user } = useContext(AuthContext);
+  const { cart, dispatch } = useContext(CartContext);
   const [orderId, setOrderId] = useState(null);
   const stateData = location.state as any;
   const purchasedProducts: any[] = [];
-
-  console.log(stateData.cart.products)
 
   stateData && stateData.cart.products && stateData.cart.products.forEach((item:any) => {
     purchasedProducts.push({
@@ -42,6 +42,11 @@ const Success = () => {
 
       if (!error && responce.data?._id) {
         setOrderId(responce.data._id);
+        localStorage.removeItem('cart');
+        dispatch({
+          type: "CLEAR_CART",
+      })
+
       }
     }
     stateData && createOrder();

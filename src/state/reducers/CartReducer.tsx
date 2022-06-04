@@ -11,6 +11,13 @@ export const CartReducer = (state: cartType, action: any) => {
                 quantity : state.quantity +  1,
                 total : state.total + action.payload.price * action.payload.itemCount
             }
+        
+        case 'CLEAR_CART':
+            return {
+                products: [],
+                quantity: 0,
+                total: 0
+            }
 
         case 'INCREACE_PRODUCT_COUNT':
             const updatedItemIndex = state.products.findIndex(product => (
